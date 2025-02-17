@@ -1,6 +1,6 @@
+from itertools import permutations
 class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
-        from itertools import permutations
         a = []
         for i in range(1, len(tiles)+1):
             a += permutations(tiles, i)
