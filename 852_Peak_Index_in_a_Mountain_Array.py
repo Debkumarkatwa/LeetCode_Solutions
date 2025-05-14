@@ -1,6 +1,10 @@
 class Solution:
     def peakIndexInMountainArray(self, arr: list[int]) -> int:
-        return arr.index(max(arr))
+        # return arr.index(max(arr))
+        
+        for i in range(1, len(arr)-1):
+            if( (arr[i] > arr[i-1]) and (arr[i] > arr[i+1]) ):
+                return i
     
 # Example usage
 a = Solution()
