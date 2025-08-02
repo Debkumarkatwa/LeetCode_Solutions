@@ -13,3 +13,10 @@ class Solution:
             if (x > (2**31)-1):
                 return 0
             return x
+        
+
+a = Solution()
+print(a.reverse(123))
+print(a.reverse(-123))
+print(a.reverse(43))
+print(a.reverse(2147483651))
