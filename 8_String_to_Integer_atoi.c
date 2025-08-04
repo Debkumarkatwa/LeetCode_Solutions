@@ -14,22 +14,35 @@
 # include <stdlib.h>
 
 int myAtoi(char* s) {
-    int result = 0, range = sizeof(s) / sizeof(char);
-    int sign = 0;
+    int i = 0, sign = 1;
+    long result = 0;
 
-    for(int i=0; i<range; i++){
-        if ((s[i] == "-" || s[i] == "+") && sign == 0){
-            if (s[i] == "-"){
-                sign == -1;
-            }
-            sign = 1;
-        }
-
-        if (result != 0 && (s[i] != 0 || s[i] != 1 || s[i] != 2 || s[i] != 3 || s[i] != 4 || s[i] != 5 || s[i] != 6 || s[i] != 7 || s[i] != 8 || s[i] != 9)){
-            return result;
-        }
-        
+    // Skip leading whitespace
+    while (s[i] == ' ') {
+        i++;
     }
+
+    // Check for sign
+    if (s[i] == '-' || s[i] == '+') {
+        if (s[i] == '-') {
+            sign = -1;
+        }
+        i++;
+    }
+
+    // Convert digits and handle overflow/underflow
+    while (s[i] >= '0' && s[i] <= '9') {
+        result = result * 10 + (s[i] - '0');
+        if (sign == 1 && result > 2147483647) {
+            return 2147483647;
+        }
+        if (sign == -1 && -result < -2147483648) {
+            return -2147483648;
+        }
+        i++;
+    }
+
+    return (int)(sign * result);
 }
 
 int main() {
