@@ -1,6 +1,7 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        b, c, flag = [],[],0
+        b, result, flag = [], 0, 0 
+        
         for i in s:
             match i:
                 case "I":
@@ -24,16 +25,16 @@ class Solution:
                 flag = 0
                 continue
             
-            if i == len(b)-1:   c.append(b[i])
+            if i == len(b)-1:   result +=b[i]
             
             else:
                 if b[i] < b[i+1]:
-                    c.append(b[i+1]-b[i])
+                    result += (b[i+1]-b[i])
                     flag = 1
                 else:
-                    c.append(b[i])
+                    result += b[i]
         
-        return sum(c)
+        return result
     
 
 a = Solution()
